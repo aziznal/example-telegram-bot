@@ -1,3 +1,5 @@
 venv
 private/**
 !private/.gitkeep
+
+**/__pycache__
