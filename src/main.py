@@ -43,6 +43,8 @@ def ilyas(update: telegram.update.Update, context):
 
 
 def echo(update: telegram.update.Update, context):
+    print(update.message.chat_id)
+
     print(
         f"{update.effective_user.full_name}: {update.message.text} ({update.message.date.hour}:{update.message.date.minute})")
 
