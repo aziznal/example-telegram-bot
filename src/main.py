@@ -3,6 +3,8 @@ import logging
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
+import telegram
+
 import utils as utils
 
 # Enable logging
@@ -17,23 +19,37 @@ def start(update, context):
 
 
 def help(update, context):
-    update.message.reply_text('Help!')
+    update.message.reply_text("""
+Example Telegram Bot. made by aziznal (github.com/aziznal)
+
+You can use the following commands:
+
+    /start          - Displays first-time start message
+    /help           - Displays this help message
+    /ahmed          - Displays a custom message I made for my brother
+    /ilyas          - Displays a custom message I made for a friend
+
+The bot will echo back to any message outside of these commands
+""")
 
 
-def ahmed(update, context):
+def ahmed(update: telegram.update.Update, context):
     update.message.reply_text('Whazzzzzzzzzzzzzzzaaaaaaaap')
 
-def ilyas(update, context):
+
+def ilyas(update: telegram.update.Update, context):
     print("received /ilyas command")
     update.message.reply_text('Whazzzzzzzzzzzzzzzaaaaaaaap')
 
 
-def echo(update, context):
-    print(f"received {update.message.text}")
+def echo(update: telegram.update.Update, context):
+    print(
+        f"{update.effective_user.full_name}: {update.message.text} ({update.message.date.hour}:{update.message.date.minute})")
+
     update.message.reply_text(update.message.text)
 
 
-def error(update, context):
+def error(update: telegram.update.Update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 
