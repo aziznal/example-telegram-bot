@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 def start(update, context):
-    update.message.reply_text('Hi!')
+    update.message.reply_text('Welcome to my bot, baby.')
 
 
 def help(update, context):
@@ -23,8 +23,13 @@ def help(update, context):
 def ahmed(update, context):
     update.message.reply_text('Whazzzzzzzzzzzzzzzaaaaaaaap')
 
+def ilyas(update, context):
+    print("received /ilyas command")
+    update.message.reply_text('Whazzzzzzzzzzzzzzzaaaaaaaap')
+
 
 def echo(update, context):
+    print(f"received {update.message.text}")
     update.message.reply_text(update.message.text)
 
 
@@ -42,6 +47,7 @@ def main():
     dp.add_handler(CommandHandler("help", help))
 
     dp.add_handler(CommandHandler("ahmed", ahmed))
+    dp.add_handler(CommandHandler("ilyas", ilyas))
 
     dp.add_handler(MessageHandler(Filters.text, echo))
 
